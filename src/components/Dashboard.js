@@ -1,16 +1,9 @@
 import React from "react";
-//  import OnlineSlider from "./components/OnlineSlider";
-//  import MasterVolume from "./components/MasterVolume";
-// import SoundQuality from "./components/SoundQuality"
-
 
  const Dashboard = () => {
-    return (
+    return(
         <div>
-        <h1 className="welcome-user">Welcome User!</h1>
-    {/* <OnlineSlider /> */} 
-        {/* <MasterVolume /> */} 
-        {/* <SoundQuality /> */} 
+        <h2 className="system-notifications"> System Notifications: </h2>
         </div>
     )
 }

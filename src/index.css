@@ -14,11 +14,6 @@ code {
 
 .welcome-user{
   color: gray;;
-  margin-left: 3%;
   display: flex;
 }
 
-.system-notifications {
-  margin-top: 3%;
-  margin-left: 3%;
-}

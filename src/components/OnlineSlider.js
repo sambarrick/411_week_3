@@ -1,25 +1,28 @@
 import React from 'react';
-import { FormControlLabel, FormGroup, Switch, } from '@material-ui/core';
+import { FormControlLabel, CardContent, Typography, Switch, Card } from '@material-ui/core';
 
-const OnlineSlider = props => (
+export default function SimpleCard() {
 
+return(
 	<div className="online-switch">
-		<h4>Online Mode</h4>
-		<h6>Is this application connected to the internet?</h6>
-		<div className="m-t">
-			<FormGroup>
+		<div>
+			<Card>
+			<CardContent>
+			<Typography variant="h5" component="h2">
+			 Online Mode
+			</Typography>
+			<Typography variant="body2" component="p">
+			Is this application connected to the internet?
+			</Typography>
+		  </CardContent>
 				<FormControlLabel
 					control={
 						<Switch 
-							checked={props.onlineState} 
-							onChange={props.onlineFunc} 
+							
 						/>}
 					label="Online"
 				/>
-			</FormGroup>
+				</Card>
 		</div>
 	</div>
-
-)
-
-export default OnlineSlider;
+)}

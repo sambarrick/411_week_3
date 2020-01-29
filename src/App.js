@@ -7,32 +7,36 @@ import MasterVolume from "./components/MasterVolume";
 import SoundQuality from "./components/SoundQuality"
 import Grid from '@material-ui/core/Grid';
 import Dashboard from "./components/Dashboard";
-import SystemNotifications from "./components/SystemNotifications"
+import Header from "./components/Header"
 
 class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <NavBar />
-          <Login />
-          
-          <Dashboard />
+  state = {
+    login: false
+  }
 
-          <Grid
+  render() {
+
+    let content = null;
+    if(this.state.login == false){
+      content = <div><NavBar /> <Login onLogin={ () => this.setState({login: true}) }/> </div>
+    } else if(this.state.login == true) {
+      content = <div>  
+        <NavBar /> 
+        <Header /> 
+              <Grid
   container
   direction="row"
   justify="space-evenly"
   alignItems="center"
 >
-
-<OnlineSlider />
-<MasterVolume />
-<SoundQuality />
-
-      </Grid>
-      <SystemNotifications />
-      </div>
-    );
+        <OnlineSlider />
+        <MasterVolume />
+        <SoundQuality />
+          </Grid>
+          <Dashboard />
+        </div>
+    }
+    return (content);
   }
 }
 

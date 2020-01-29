@@ -1,15 +1,12 @@
 import React, {Component} from 'react';
-import { CardActions, Button, Typography, Slider } from '@material-ui/core/';
+import { CardActions, Button, Typography, Slider, Card, CardContent } from '@material-ui/core/';
 
 export default class MasterVolume extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			volume: this.props.volumeState,
+state = {
+			volume: this.volumeState,
 			mute: false,
-			previousVolume: this.props.volumeState,
+			previousVolume: this.volumeState,
 		}
-	}
 	
 	muteVolume = ( event, value ) => {
 		let newMute = !this.state.mute
@@ -28,13 +25,18 @@ export default class MasterVolume extends Component {
 	render() { 
         return (
 		<div className="volume-slider">
+		<div>
+		<Card>
+		<CardContent>
 			<Typography id="discrete-slider" gutterBottom>
 				Volume
 			</Typography>
+			</CardContent>
 			<Slider
-				defaultValue={this.state.volume}
+				defaultValue={20}
 				aria-labelledby="discrete-slider"
 				valueLabelDisplay="on"
+				fullWidth
 				step={10}
 				marks
 				min={0}
@@ -45,6 +47,8 @@ export default class MasterVolume extends Component {
 			<CardActions>
 				<Button size="small" onClick={()=>this.muteVolume()}>{this.state.mute ? "Unmute" : "Mute"}</Button>
 			</CardActions>
+			</Card>
+			</div>
 		</div>
 	)}
 }
