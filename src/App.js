@@ -2,41 +2,36 @@ import React from "react";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import Login from "./components/Login";
-import OnlineSlider from "./components/OnlineSlider";
-import MasterVolume from "./components/MasterVolume";
-import SoundQuality from "./components/SoundQuality"
-import Grid from '@material-ui/core/Grid';
 import Dashboard from "./components/Dashboard";
-import Header from "./components/Header"
+import Header from "./components/Header";
+import { Container } from "@material-ui/core";
 
 class App extends React.Component {
   state = {
-    login: false
-  }
+    loggedIn: false
+  };
 
   render() {
-
     let content = null;
-    if(this.state.login == false){
-      content = <div><NavBar /> <Login onLogin={ () => this.setState({login: true}) }/> </div>
-    } else if(this.state.login == true) {
-      content = <div>  
-        <NavBar /> 
-        <Header /> 
-              <Grid
-  container
-  direction="row"
-  justify="space-evenly"
-  alignItems="center"
->
-        <OnlineSlider />
-        <MasterVolume />
-        <SoundQuality />
-          </Grid>
-          <Dashboard />
+    if (this.state.loggedIn == false) {
+      content = (
+        <div>
+          <NavBar />
+          <Login onLogin={() => this.setState({ loggedIn: true })} />{" "}
         </div>
+      );
+    } else if (this.state.loggedIn == true) {
+      content = (
+        <div>
+          <NavBar />
+          <Container maxWidth="lg">
+            <Header />
+            <Dashboard />
+          </Container>
+        </div>
+      );
     }
-    return (content);
+    return content;
   }
 }
 

@@ -2,3 +2,38 @@
   text-align: center;
 }
 
+.welcome-user {
+  margin-bottom: 5%;
+}
+
+.dashboard-control-col {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+ul {
+  padding-inline-start: 20px;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+}
+
+.nav-list-item {
+  margin: auto 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.system-notifications {
+  margin: auto 20px;
+  margin-top: 5%;
+}

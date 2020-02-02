@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
+
 
 export default class Login extends React.Component {
   
@@ -33,8 +33,7 @@ export default class Login extends React.Component {
 			fullWidth
             color="primary"
             onClick={() => { this.props.onLogin() }}
-          >
-            LOGIN
+          >LOGIN
           </Button>
         </form>
       </Grid>
