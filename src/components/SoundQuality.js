@@ -18,7 +18,7 @@ const SoundQuality = props => (
             quality in the event of poor <br />
             connection
           </Typography>
-          <Select value={props.qualityState} onChange={props.qualityFunc}>
+          <Select value={props.qualityStatus} onChange={props.changeQuality}>
             <MenuItem value={"low"}>Low</MenuItem>
             <MenuItem value={"normal"}>Normal</MenuItem>
             <MenuItem value={"high"}>High</MenuItem>

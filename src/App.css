@@ -6,7 +6,7 @@
   margin-bottom: 5%;
 }
 
-.dashboard-control-col {
+.dashboard-cards {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;

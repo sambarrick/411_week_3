@@ -22,7 +22,7 @@ const OnlineSlider = props => (
         </CardContent>
         <FormControlLabel
           control={
-            <Switch checked={props.onlineState} onChange={props.onlineFunc} />
+            <Switch checked={props.onlineStatus} onChange={props.onlineToggle} />
           }
           label="Online"
         />

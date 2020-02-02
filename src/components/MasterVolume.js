@@ -2,18 +2,16 @@ import React, { Component } from "react";
 import { Typography, Slider, Card, CardContent } from "@material-ui/core/";
 
 export default class MasterVolume extends Component {
-  constructor(props) {
+  constructor(props) { //can't figure out how to transfer info without using constructor(props). When I do just state, nothing seems to transfer.
     super(props);
     this.state = {
-      volume: this.props.volumeState,
-      mute: false,
-      previousVolume: this.props.volumeState
+      volume: this.props.volumeStatus,
     };
   }
 
   handleChange = (event, value) => {
     this.setState({ volume: value });
-    this.props.volumeFunc(value);
+    this.props.changeVolume(value);
   };
 
   render() {

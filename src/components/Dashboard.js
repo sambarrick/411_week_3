@@ -7,8 +7,8 @@ class Dashboard extends Component {
   state = {
     notifications: [],
     online: true,
-    volume: 80,
-    quality: "normal"
+    volume: 20,
+    soundquality: "normal"
   };
 
   toggleNotification = msg => {
@@ -21,30 +21,30 @@ class Dashboard extends Component {
   };
   //...makes it so that it adds to the existing array of strings.
 
-  addNotification = msg => {
+  pushNotification = msg => {
     this.setState({ notifications: [...this.state.notifications, msg] });
   };
 
-  toggleOnline = () => {
+  toggleOnlineSlider = () => {
     this.setState({ online: !this.state.online });
     const msg =
       "Your application is offline. You won't be able to share or stream music to other devices.";
     this.toggleNotification(msg);
   };
 
-  volumeSlider = newValue => {
-    this.setState({ volume: newValue });
+  masterVolume = newNumber => {
+    this.setState({ volume: newNumber });
 
     const msg =
       "Listening to music at a high volume could cause long-term hearing loss.";
 
-    if (newValue > 80 && !this.state.notifications.includes(msg)) {
-      this.addNotification(msg);
+    if (newNumber > 80 && !this.state.notifications.includes(msg)) {
+      this.pushNotification(msg);
     }
   };
 
   soundQuality = event => {
-    this.setState({ quality: event.target.value });
+    this.setState({ soundquality: event.target.value });
 
     const msg =
       "Music quality is degraded. Increase quality if your connection allows it.";
@@ -52,34 +52,34 @@ class Dashboard extends Component {
 
     //Ternary operator!! Woooo!!
     event.target.value == "low"
-      ? this.addNotification(msg)
-      : this.addNotification(otherMsg);
+      ? this.pushNotification(msg)
+      : this.pushNotification(otherMsg);
   };
 
   render() {
     return (
-      <div className="dashboard-container">
-        <div className="dashboard-control-col">
+      <div>
+        <div className="dashboard-cards">
           <OnlineSlider
-            onlineState={this.state.online}
-            onlineFunc={this.toggleOnline}
+            onlineSStatus={this.state.online}
+            onlineToggle={this.toggleOnlineSlider}
           ></OnlineSlider>
 
           <MasterVolume
-            volumeState={this.state.volume}
-            volumeFunc={this.volumeSlider}
+            volumeStatus={this.state.volume}
+            changeVolume={this.masterVolume}
           ></MasterVolume>
 
           <SoundQuality
-            qualityState={this.state.quality}
-            qualityFunc={this.soundQuality}
+            qualityStatus={this.state.soundquality}
+            changeQuality={this.soundQuality}
           ></SoundQuality>
         </div>
 
         <div className="system-notifications">
           <h3>System Notifications:</h3>
-          {this.state.notifications.map((item, index) => (
-            <p key={index}>{item}</p>
+          {this.state.notifications.map((notification, index) => (
+            <p key={index}>{notification}</p>
           ))}
         </div>
       </div>
