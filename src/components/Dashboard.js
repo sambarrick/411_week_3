@@ -6,18 +6,20 @@ import SoundQuality from "./SoundQuality";
 class Dashboard extends Component {
   state = {
     notifications: [],
-    online: true,
-    volume: 20,
+    onlinestatus: true,
+    mastervolume: 20,
     soundquality: "normal"
   };
 
   toggleNotification = msg => {
-    const msgIndex = this.state.notifications.indexOf(msg);
+    const msgDisplay = this.state.notifications.indexOf(msg);
 
     //ternary operator!!! Wooo!!!!!!
     this.state.notifications.includes(msg)
-      ? this.state.notifications.splice(msgIndex, 1)
+      ? this.state.notifications.splice(msgDisplay, 1) //does the page cotain the offline message? Yes? 
+      //Then remove it
       : this.setState({ notifications: [...this.state.notifications, msg] });
+      //otherwise, add it to the page. Have to toggle to avoid confusion
   };
   //...makes it so that it adds to the existing array of strings.
 
@@ -26,18 +28,16 @@ class Dashboard extends Component {
   };
 
   toggleOnlineSlider = () => {
-    this.setState({ online: !this.state.online });
+    this.setState({ onlinestatus: !this.state.onlinestatus });
     const msg =
       "Your application is offline. You won't be able to share or stream music to other devices.";
     this.toggleNotification(msg);
   };
 
   masterVolume = newNumber => {
-    this.setState({ volume: newNumber });
-
+    this.setState({ mastervolume: newNumber });
     const msg =
       "Listening to music at a high volume could cause long-term hearing loss.";
-
     if (newNumber > 80 && !this.state.notifications.includes(msg)) {
       this.pushNotification(msg);
     }
@@ -45,9 +45,7 @@ class Dashboard extends Component {
 
   soundQuality = event => {
     this.setState({ soundquality: event.target.value });
-
-    const msg =
-      "Music quality is degraded. Increase quality if your connection allows it.";
+    const msg = "Music quality is degraded. Increase quality if your connection allows it.";
     const otherMsg = "Sound quality looks dope.";
 
     //Ternary operator!! Woooo!!
@@ -61,12 +59,12 @@ class Dashboard extends Component {
       <div>
         <div className="dashboard-cards">
           <OnlineSlider
-            onlineSStatus={this.state.online}
+            onlineStatus={this.state.onlinestatus}
             onlineToggle={this.toggleOnlineSlider}
           ></OnlineSlider>
 
           <MasterVolume
-            volumeStatus={this.state.volume}
+            volumeStatus={this.state.mastervolume}
             changeVolume={this.masterVolume}
           ></MasterVolume>
 

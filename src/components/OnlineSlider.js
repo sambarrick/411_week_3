@@ -21,7 +21,7 @@ const OnlineSlider = props => (
           </Typography>
         </CardContent>
         <FormControlLabel
-          control={
+          control={ //nifty little trick I found. control makes it so that the component actually does its thing
             <Switch checked={props.onlineStatus} onChange={props.onlineToggle} />
           }
           label="Online"
